@@ -4,6 +4,11 @@ const transactionResolver = {
             // verificación token
             return await dataSources.accountAPI.transactionsByUsername(username);
         }
+    },
+    Mutation: {
+        newTransaction: async(root, args, { dataSources }) => {
+            return await dataSources.accountAPI.newTransaction(args);
+        }
     }
 }
 
