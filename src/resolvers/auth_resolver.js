@@ -24,6 +24,15 @@ const authResolver = {
                 }
                 throw new ApolloError("Hubo un error al crear usuario con su respectiva cuenta", 500);
             }
+        },
+        deleteUser: async(root, { id }, { dataSources, userToken }) => {
+            if (!userToken || userToken == "administrador") {
+                throw new ApolloError("No estás autorizado para borrar usuarios", 401);
+            }
+            return await dataSources.authAPI.deleteUser(id);
+        },
+        login: async(root, args, { dataSources }) => {
+            return await dataSources.authAPI.login(args);
         }
     }
 };

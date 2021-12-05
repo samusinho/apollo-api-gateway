@@ -1,10 +1,12 @@
 import { ApolloServer } from "apollo-server"; 
-import AccountAPI from "./src/dataSources/account_api.js";
-import AuthAPI from "./src/dataSources/auth_api.js";
-import resolvers from "./src/resolvers/index.js";
-import typeDefs from "./src/typeDefs/index.js";
+import AccountAPI from "./dataSources/account_api.js";
+import AuthAPI from "./dataSources/auth_api.js";
+import resolvers from "./resolvers/index.js";
+import typeDefs from "./typeDefs/index.js";
+import authentication from "./utils/authentication.js";
 
 const server = new ApolloServer({
+    context: authentication,
     typeDefs,
     resolvers,
     dataSources: () => ({

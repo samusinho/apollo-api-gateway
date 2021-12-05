@@ -10,6 +10,15 @@ const authTypeDefs = gql`
         balance: Int
     }
 
+    type Login {
+        refresh: String!
+        access: String!
+    }
+
+    type Message {
+        message: String!
+    }
+
     extend type Mutation {
         newUser(
             username: String!
@@ -26,6 +35,11 @@ const authTypeDefs = gql`
             password: String!
             balance: Int!
         ): User
+        deleteUser(id: Int!): Message
+        login(
+            username: String!
+            password: String!
+        ): Login!
     }
 `;
 

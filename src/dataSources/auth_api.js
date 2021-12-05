@@ -15,6 +15,10 @@ class AuthAPI extends RESTDataSource {
     async deleteUser(id) {
         return await this.delete(`/api/users/${id}`);
     }
+
+    async login(body) {
+        return await this.post('/api/token', body);
+    }
 }
 
 export default AuthAPI;
