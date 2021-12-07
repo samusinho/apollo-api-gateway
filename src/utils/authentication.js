@@ -15,8 +15,10 @@ const authentication = async ({ req }) => {
                 }
             });
             if (resp.status == 200) {
+                const data = await resp.json();
                 return { 
-                    userToken: (await resp.json()).username
+                    userToken: data.username,
+                    user: data
                 }
             } else {
                 throw new ApolloError('Sesión inactiva', 401);

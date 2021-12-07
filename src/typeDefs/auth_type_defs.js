@@ -19,6 +19,10 @@ const authTypeDefs = gql`
         message: String!
     }
 
+    extend type Query {
+        userInfo: User
+    }
+
     extend type Mutation {
         newUser(
             username: String!

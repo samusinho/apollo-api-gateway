@@ -1,7 +1,14 @@
 import { ApolloError } from "apollo-server-errors";
 
 const authResolver = {
-    Query: {},
+    Query: {
+        userInfo: async(root, args, { user }) => {
+            if (!user) {
+                throw new ApolloError("No estás autorizado para mirar esta información", 401);
+            }
+            return await user;
+        }
+    },
     Mutation: {
         newUser: async(root, args, { dataSources }) => {
             return await dataSources.authAPI.newUser(args);
